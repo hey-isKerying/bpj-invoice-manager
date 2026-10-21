@@ -26,7 +26,8 @@ def excel(row):
   s[f'H{r}']=f'=F{r}*G{r}'
   for col in 'GH':s[f'{col}{r}'].number_format='#,##0.00'
  # Fix original inconsistent total range in SS NO PCK, without changing appearance.
- s['H30']=f'=SUM(H{start}:H29)'
+ if row['template']=='ss-no-pocket':
+  s['H30']=f'=SUM(H{start}:H29)'
  s.print_options.horizontalCentered=True
  s.sheet_properties.pageSetUpPr.fitToPage=True;s.page_setup.fitToWidth=1;s.page_setup.fitToHeight=1
  s.page_setup.orientation='portrait';s.page_setup.paperSize=s.PAPERSIZE_A4
